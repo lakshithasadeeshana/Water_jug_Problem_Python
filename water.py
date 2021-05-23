@@ -16,8 +16,8 @@ def waterJug(jug1, jug2, result):
 
 	while (len(jugQueue) > 0):
 		jugCurrent = jugQueue.popleft()   #asign current state to variable
-        if ((jugCurrent[0], jugCurrent[1]) in dic):
-			continue
+        #if ((jugCurrent[0], jugCurrent[1]) in dic):
+			#continue
 
 		
 		if ((jugCurrent[0] > jug1 or jugCurrent[1] > jug2 or
@@ -26,7 +26,7 @@ def waterJug(jug1, jug2, result):
 
 		
 		jugPath.append([jugCurrent[0], jugCurrent[1]])
-        dic[(jugCurrent[0], jugCurrent[1])] = 1         # Marking current state as visited
+        #dic[(jugCurrent[0], jugCurrent[1])] = 1         # Marking current state as visited
 
 		
 		if (jugCurrent[0] == target or jugCurrent[1] == target):
@@ -51,28 +51,11 @@ def waterJug(jug1, jug2, result):
 
 	
 		jugQueue.append([jugCurrent[0], jug2]) 
-		jugQueue.append([jug1, jugCurrent[1]]) 
-        for pour in range(max(jug1, jug2) + 1):
-
-			
-			jugFil1 = jugCurrent[0] + pour
-			jugFil2 = jugCurrent[1] - pour
-
-			# Check if this state is possible or not
-			if (jugFil1 == jug1 or (jugFil2 == 0 and jugFil2 >= 0)):
-				jugQueue.append([jugFil1, jugFil2])
-
-			
-			jugFil1 = jugCurrent[0] - pour
-			jugFil2 = jugCurrent[1] + pour
-
-			
-			if ((jugFil1 == 0 and jugFil1 >= 0) or jugFil2 == jug2):
-				jugQueue.append([jugFil1, jugFil2])
+		jugQueue.append([jug1, jugCurrent[1]])
 		
 	
 		jugQueue.append([jug1, 0])  #empty jug1
-		jugQueue.append([0, jug2])  #empty jug2
+		jugQueue.append([0, jug2])  #empty jug2  
 
 
 	if (not isTargetReach):
